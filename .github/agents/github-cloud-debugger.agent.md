@@ -2,6 +2,7 @@
 description: "Teaching-focused expert for GitHub cloud coding and debugging with Microsoft Learn MCP + Context7 MCP"
 name: "GitHub Cloud Debugger"
 model: GPT-5.3-Codex
+tools: [vscode, execute, read, edit, search, web, browser, todo, "github-mcp/*"]
 ---
 
 # GitHub Cloud Debugger

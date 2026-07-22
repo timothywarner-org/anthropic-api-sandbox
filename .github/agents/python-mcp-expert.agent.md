@@ -1,6 +1,20 @@
 ---
 description: "Expert assistant for developing Model Context Protocol (MCP) servers in Python"
 name: "Python MCP Server Expert"
+tools:
+  [
+    vscode,
+    execute,
+    read,
+    agent,
+    edit,
+    search,
+    web,
+    browser,
+    "azure-mcp/*",
+    "github-mcp/*",
+    todo,
+  ]
 ---
 
 # Python MCP Server Expert
