@@ -36,6 +36,13 @@ def test_load_config_raises_on_placeholder_key(monkeypatch):
         load_config()
 
 
+def test_load_config_raises_on_whitespace_only_key(monkeypatch):
+    """load_config should reject whitespace-only API key values."""
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "   ")
+    with pytest.raises(ConfigError):
+        load_config()
+
+
 def test_load_config_accepts_valid_key(monkeypatch):
     """load_config should succeed with a valid API key."""
     monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-test-key")
