@@ -30,6 +30,23 @@ uv run sandbox system --persona "pirate" "Tell me about cloud computing."
 | `sandbox stream <prompt>`                  | Streaming response      |
 | `sandbox system --persona <role> <prompt>` | System prompt pattern   |
 
+## PowerShell Utilities
+
+For no-brainer demo runs and restarts, use the scripts in `utilities/`:
+
+```powershell
+# Run any mode
+.\utilities\Start-Sandbox.ps1 -Command basic -Prompt "What is zero trust?"
+
+# Mode-specific wrappers
+.\utilities\Start-Basic.ps1 -Prompt "Explain CIDR in one paragraph."
+.\utilities\Start-Stream.ps1 -Prompt "Give me 5 Kubernetes troubleshooting tips."
+.\utilities\Start-System.ps1 -Persona "teacher" -Prompt "Explain tokenization simply."
+
+# Replay last run (idempotent restart)
+.\utilities\Restart-Sandbox.ps1
+```
+
 See [docs/usage.md](docs/usage.md) for detailed examples.
 
 ## Requirements
