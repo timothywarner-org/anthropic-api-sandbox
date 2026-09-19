@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://timothywarner-org.github.io/anthropic-api-sandbox/schemas/unified-security-report.schema.json",
+  "title": "Unified Security Scan Report",
+  "type": "object",
+  "required": [
+    "unified_scan_schema_version",
+    "generated_at",
+    "target",
+    "summary",
+    "tools",
+    "findings"
+  ],
+  "properties": {
+    "unified_scan_schema_version": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "target": { "type": "string" },
+    "summary": {
+      "type": "object",
+      "required": ["total_findings", "code_findings", "dependency_findings"],
+      "properties": {
+        "total_findings": { "type": "integer" },
+        "code_findings": { "type": "integer" },
+        "dependency_findings": { "type": "integer" }
+      },
+      "additionalProperties": false
+    },
+    "tools": {
+      "type": "object",
+      "required": ["bandit", "pip_audit"],
+      "properties": {
+        "bandit": {
+          "type": "object",
+          "required": ["command", "exit_code", "status"],
+          "properties": {
+            "command": { "type": "array", "items": { "type": "string" } },
+            "exit_code": { "type": "integer" },
+            "status": { "type": "string" },
+            "stderr": { "type": "string" },
+            "error": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "pip_audit": {
+          "type": "object",
+          "required": ["command", "exit_code", "status"],
+          "properties": {
+            "command": { "type": "array", "items": { "type": "string" } },
+            "exit_code": { "type": "integer" },
+            "status": { "type": "string" },
+            "stderr": { "type": "string" },
+            "error": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "source",
+          "category",
+          "id",
+          "severity",
+          "summary",
+          "recommendation"
+        ],
+        "properties": {
+          "source": { "type": "string", "enum": ["bandit", "pip-audit"] },
+          "category": { "type": "string", "enum": ["code", "dependency"] },
+          "id": { "type": "string" },
+          "severity": { "type": "string" },
+          "confidence": { "type": "string" },
+          "summary": { "type": "string" },
+          "recommendation": { "type": "string" },
+          "location": {
+            "type": "object",
+            "properties": {
+              "file": { "type": "string" },
+              "line": { "type": "integer" },
+              "package": { "type": "string" },
+              "version": { "type": "string" }
+            },
+            "additionalProperties": false
+          },
+          "metadata": { "type": "object", "additionalProperties": true }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

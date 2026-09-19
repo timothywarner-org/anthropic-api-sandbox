@@ -14,7 +14,9 @@ tools:
     "azure-mcp/*",
     "github-mcp/*",
     todo,
-  ]
+  ],
+skills:
+  - python-security-scanning
 ---
 
 # Python MCP Server Expert

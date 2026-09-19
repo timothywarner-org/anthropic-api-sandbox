@@ -1,0 +1,45 @@
+{
+  "unified_scan_schema_version": "1.0.0",
+  "generated_at": "2026-07-22T16:32:14Z",
+  "target": ".github/skills/python-security-scanning/scripts",
+  "summary": {
+    "total_findings": 0,
+    "code_findings": 0,
+    "dependency_findings": 0
+  },
+  "tools": {
+    "bandit": {
+      "command": [
+        "bandit",
+        "-r",
+        ".github/skills/python-security-scanning/scripts",
+        "-f",
+        "json",
+        "-q"
+      ],
+      "exit_code": 127,
+      "status": "error",
+      "stderr": "Command not found: bandit ([WinError 2] The system cannot find the file specified)",
+      "error": "Bandit produced no JSON output"
+    },
+    "pip_audit": {
+      "command": [
+        "pip-audit",
+        "--format",
+        "json",
+        "--desc",
+        "on",
+        "--aliases",
+        "on",
+        "--vulnerability-service",
+        "pypi",
+        ".github/skills/python-security-scanning/scripts"
+      ],
+      "exit_code": 127,
+      "status": "error",
+      "stderr": "Command not found: pip-audit ([WinError 2] The system cannot find the file specified)",
+      "error": "pip-audit produced no JSON output"
+    }
+  },
+  "findings": []
+}

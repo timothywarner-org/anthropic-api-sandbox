@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://timothywarner-org.github.io/anthropic-api-sandbox/schemas/bandit-json.schema.json",
+  "title": "Bandit JSON Report",
+  "type": "object",
+  "required": ["errors", "generated_at", "metrics", "results"],
+  "properties": {
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["filename", "reason"],
+        "properties": {
+          "filename": { "type": "string" },
+          "reason": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    },
+    "generated_at": { "type": "string" },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "integer"
+        }
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "filename",
+          "issue_confidence",
+          "issue_severity",
+          "issue_text",
+          "line_number",
+          "line_range",
+          "more_info",
+          "test_id",
+          "test_name"
+        ],
+        "properties": {
+          "code": { "type": "string" },
+          "filename": { "type": "string" },
+          "issue_confidence": {
+            "type": "string",
+            "enum": ["LOW", "MEDIUM", "HIGH", "UNDEFINED"]
+          },
+          "issue_severity": {
+            "type": "string",
+            "enum": ["LOW", "MEDIUM", "HIGH", "UNDEFINED"]
+          },
+          "issue_cwe": {
+            "type": "object",
+            "required": ["id", "link"],
+            "properties": {
+              "id": { "type": "integer" },
+              "link": { "type": "string" }
+            },
+            "additionalProperties": true
+          },
+          "issue_text": { "type": "string" },
+          "line_number": { "type": "integer" },
+          "line_range": {
+            "type": "array",
+            "items": { "type": "integer" }
+          },
+          "more_info": { "type": "string" },
+          "test_id": { "type": "string" },
+          "test_name": { "type": "string" }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

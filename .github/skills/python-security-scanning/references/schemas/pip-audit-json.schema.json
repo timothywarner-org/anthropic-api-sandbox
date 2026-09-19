@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://timothywarner-org.github.io/anthropic-api-sandbox/schemas/pip-audit-json.schema.json",
+  "title": "pip-audit JSON Report",
+  "type": "object",
+  "required": ["dependencies", "fixes"],
+  "properties": {
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["name", "skip_reason"],
+            "properties": {
+              "name": { "type": "string" },
+              "skip_reason": { "type": "string" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["name", "version", "vulns"],
+            "properties": {
+              "name": { "type": "string" },
+              "version": { "type": "string" },
+              "vulns": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["id", "fix_versions"],
+                  "properties": {
+                    "id": { "type": "string" },
+                    "fix_versions": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    "aliases": {
+                      "type": "array",
+                      "items": { "type": "string" }
+                    },
+                    "description": { "type": "string" }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "fixes": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "required": ["name", "version", "skip_reason"],
+            "properties": {
+              "name": { "type": "string" },
+              "version": { "type": "string" },
+              "skip_reason": { "type": "string" }
+            },
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "required": ["name", "old_version", "new_version"],
+            "properties": {
+              "name": { "type": "string" },
+              "old_version": { "type": "string" },
+              "new_version": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}
